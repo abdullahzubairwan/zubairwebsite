@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Creating a custom Management Dashboard from Open Source Tools">
+
+<title>Abdullah Zubair - Employee Management Dashboard</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Abdullah Zubair</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../vis.html" rel="" target="">
+ <span class="menu-text">Vis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../dashboard.html" rel="" target="">
+ <span class="menu-text">Dashboard</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../others.html" rel="" target="">
+ <span class="menu-text">Others</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html" rel="" target="">
+ <span class="menu-text">Posts</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://twitter.com/zubairwh" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/abdullahzubairwan" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-dashboardemd" id="toc-sec-dashboardemd" class="nav-link active" data-scroll-target="#sec-dashboardemd">Introduction to the Problem</a>
+  <ul class="collapse">
+  <li><a href="#tools-used" id="toc-tools-used" class="nav-link" data-scroll-target="#tools-used">Tools Used</a></li>
+  <li><a href="#how-it-worked" id="toc-how-it-worked" class="nav-link" data-scroll-target="#how-it-worked">How it worked</a></li>
+  <li><a href="#sample-visualization" id="toc-sample-visualization" class="nav-link" data-scroll-target="#sample-visualization">Sample Visualization</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
+  <li><a href="#remarks" id="toc-remarks" class="nav-link" data-scroll-target="#remarks">Remarks</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Employee Management Dashboard</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Dashboard</div>
+    <div class="quarto-category">Open Source</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Creating a custom Management Dashboard from Open Source Tools
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="sec-dashboardemd" class="level2">
+<h2 class="anchored" data-anchor-id="sec-dashboardemd">Introduction to the Problem</h2>
+<p>In a growing company, the management needs software to manage basic necessities of the company. This applies to nearly almost all departments so that things can run much smoother and faster whilst improving inter-communication between all personnel. However, in one of my previous company, the management wasn’t satisfied with having to subscribe to a number of softwares that operates in its own. With most of the big companies have move towards digital transformation, my company wanted to be the first within our sub-companies to adopt this inevitable trend.</p>
+<p>With that, the idea of us creating our very own software from open source tools with addition of minor subscription from certain provider comes into life. I was tasked to lead this process and eventually deliver a fully automated system with minimal supervision required.</p>
+<section id="tools-used" class="level3">
+<h3 class="anchored" data-anchor-id="tools-used">Tools Used</h3>
+<p>After weeks of interviewing relevant stakeholders while researching the optimum tools, I concluded that we require the tools below to complete the task.</p>
+<ol type="1">
+<li><a href="https://www.atlassian.com/">JIRA</a> (Technical Related Data)</li>
+<li><a href="https://www.rstudio.com/products/shiny/">R Shiny</a> (Front End)</li>
+<li><a href="https://formspree.io/">Formspree</a> (Management Related Data) &amp; Google Sheets API</li>
+<li>Ubuntu (Back End)</li>
+</ol>
+</section>
+<section id="how-it-worked" class="level3">
+<h3 class="anchored" data-anchor-id="how-it-worked">How it worked</h3>
+<p>Firstly, the <code>formspree</code> is just a form-submitting platform for employees to submit their regular claims, OT, leave and etc. Once we ditch the papers from HR side and moved towards digitalization, our web developers even included details of the remainder of their leaves, historical leaves and OT and others. This already eliminate one of the problem for HR having to manually check for each staff for every details of their matters. Of course, this information can only be accessed by both HR and each particular staff. The data will then be automatically submitted to <code>Google Sheets</code>.</p>
+<p>Next, the usage of <code>JIRA</code> is for the technical team and their respective team lead to submit their work entry. By right, this is mostly handled by the team leader to avoid creating too many side tasks for the technical team.</p>
+<p>From there, using extensions from <code>JIRA</code> and <code>Google Sheets API</code> , we extract the data into our local server via <code>cron-job</code> on certain times of the day. From there, we started building the Dashboard via <code>R Shiny</code> . We created multiple segmentations to feed relevant stakeholders respectively.</p>
+<p>Finally, our backend team deployed the dashboard through our servers so that it is secure and can’t be accessed from people outside the organization.</p>
+<p>The dashboard was split into three section of functionalities.</p>
+<ol type="1">
+<li>Management</li>
+</ol>
+<ul>
+<li><p>For HR, Admin and Account to monitor leave, attendance, workload, and claims.</p></li>
+<li><p>For HR to assess key area of expertise to recruit (via tree map of recent tasks)</p></li>
+<li><p>For HR to compare employee current skills to suggest new courses for respective employees (via Radar Chart)</p></li>
+</ul>
+<ol start="2" type="1">
+<li>Team Leader/ Head of Department</li>
+</ol>
+<ul>
+<li><p>Work load</p></li>
+<li><p>Rough work interaction for team leads to manage their team in terms of teamwork etc. (via Sankey Diagram)</p></li>
+<li><p>Progress</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Employee</li>
+</ol>
+<ul>
+<li><p>For employee to view concurrent tasks run by colleagues and historical task all in one page.</p></li>
+<li><p>To quickly find who is most involved in a certain project for reference.</p></li>
+</ul>
+</section>
+<section id="sample-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="sample-visualization">Sample Visualization</h3>
+<p>These visualizations are not the actual ones being done for my previous company.</p>
+<ol type="1">
+<li>Project Involvement</li>
+</ol>
+<p>For this purpose, I chose the heat map as its the use of suitable palette can quickly differentiate the value of ‘involvement’. Brighter colors indicate higher level of involvement thus what is left is for relevant stakeholders to define the method of calculating ‘involvement’</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="dashboard_emd_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Recruitment Needs</li>
+</ol>
+<p>Given that we have collected enough sample data to understand the technical requirements needed in order to perform projects, we can just use simple statistic calculations to calculate the weight of each segment of work. The ‘weight’ meaning urgency to ensure current staff to expand their knowledge to relevant areas or to add more personnel in order to avoid bottlenecks. To perform this treemap, we organized the data in a ‘network’ format after a certain calculation towards the weights are produced.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-683d52148c57c78d53f4" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-683d52148c57c78d53f4">{"x":{"visdat":{"13f487c6e4dc":["function () ","plotlyVisDat"]},"cur_data":"13f487c6e4dc","attrs":{"13f487c6e4dc":{"labels":["Recruitment","Business Dev","R Language","Vis","Statistics","Front End","Python","AI","Sales"],"parents":["","Recruitment","Recruitment","R Language","R Language","Recruitment","Recruitment","Python","Recruitment"],"values":[0,8,4,3,1,6,6,5,4],"textinfo":"label+value+percent","marker":{"line":{"width":0},"colorscale":"Reds"},"domain":{"column":1},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"treemap"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["Recruitment","Business Dev","R Language","Vis","Statistics","Front End","Python","AI","Sales"],"parents":["","Recruitment","Recruitment","R Language","R Language","Recruitment","Recruitment","Python","Recruitment"],"values":[0,8,4,3,1,6,6,5,4],"textinfo":"label+value+percent","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)","width":0},"colorscale":"Reds"},"domain":{"column":1},"type":"treemap","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Assuming the numbers are the so called ‘weights’, the colors indicate the urgency to have more resource in the specific area. What’s great about using treemap is the color and size can be used to emphasize on the magnitude of the urgency. For example, the smaller box in ‘R Language’ which is ‘Statistics’ are needed but have the least urgency. There’s a lot that can be played around here but what’s important is that the formula for the weights must take into consideration all necessary factors.</p>
+<ol start="3" type="1">
+<li>Skill Set Coverage</li>
+</ol>
+<p>Human Resource needs to suggest yearly courses for staff to enroll. At times, the staff are not sure themselves on what to take, hence having this tool for HR is handy for them to do research and provide suitable suggestions towards the staffs. Assuming the diagram below are 2 people in the same department but having different roles. For career progression, HR might feel that Staff B can start to engage more on clients, hence they suggest courses related to the topic in hand.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b8678a272d70caeeb897" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b8678a272d70caeeb897">{"x":{"visdat":{"13f48510f23c8":["function () ","plotlyVisDat"]},"cur_data":"13f48510f23c8","attrs":{"13f48510f23c8":{"fill":"toself","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatterpolar"},"13f48510f23c8.1":{"fill":"toself","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatterpolar","r":[39,28,8,7,28,39],"theta":["Client Interface","Documentation","Visualization","AI","Research","Client Interface"],"name":"Staff A","inherit":true},"13f48510f23c8.2":{"fill":"toself","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatterpolar","r":[1.5,10,39,31,15,1.5],"theta":["Client Interface","Documentation","Visualization","AI","Research","Client Interface"],"name":"Staff B","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"polar":{"radialaxis":{"visible":true,"range":[0,50]}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(31,119,180,0.5)","fill":"toself","type":"scatterpolar","mode":"markers","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"fillcolor":"rgba(255,127,14,0.5)","fill":"toself","type":"scatterpolar","r":[39,28,8,7,28,39],"theta":["Client Interface","Documentation","Visualization","AI","Research","Client Interface"],"name":"Staff A","mode":"markers","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"line":{"color":"rgba(255,127,14,1)"},"frame":null},{"fillcolor":"rgba(44,160,44,0.5)","fill":"toself","type":"scatterpolar","r":[1.5,10,39,31,15,1.5],"theta":["Client Interface","Documentation","Visualization","AI","Research","Client Interface"],"name":"Staff B","mode":"markers","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"line":{"color":"rgba(44,160,44,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Inter-communications</li>
+</ol>
+<p>The team leader and HR feels that each member of the team should cooperate and work together organically. Their aim is to avoid groupings and isolations. Hence, the data from relevant projects can help produce this ‘Sankey’ visualization.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6fe572b8e55b7a37ca0c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-6fe572b8e55b7a37ca0c">{"x":{"visdat":{"13f486ebb6ca5":["function () ","plotlyVisDat"]},"cur_data":"13f486ebb6ca5","attrs":{"13f486ebb6ca5":{"arrangement":"snap","node":{"label":["Ali","Bernard","Callum","Daphne","Emanuelle","Felipe"],"x":[0.2,0.1,0.5,0.7,0.3,0.5],"y":[0.7,0.5,0.2,0.4,0.2,0.3],"pad":10},"link":{"source":[0,0,1,2,5,4,3,5],"target":[5,3,4,3,0,2,2,3],"value":[1,2,1,1,1,1,1,2]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Project Relationship in the year 2022","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"arrangement":"snap","node":{"label":["Ali","Bernard","Callum","Daphne","Emanuelle","Felipe"],"x":[0.2,0.1,0.5,0.7,0.3,0.5],"y":[0.7,0.5,0.2,0.4,0.2,0.3],"pad":10},"link":{"source":[0,0,1,2,5,4,3,5],"target":[5,3,4,3,0,2,2,3],"value":[1,2,1,1,1,1,1,2]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>As we can see from the chart, Bernard and Emanuelle is quite isolated from the rest of their department, while only Daphne seems to be at the central of things, having about not only many, but bigger number of collaboration between her team members as demonstrated by the thickness of the grey lines. Here, the team lead can revisit on the why and hows and plan ahead for the future.</p>
+</section>
+<section id="challenges" class="level3">
+<h3 class="anchored" data-anchor-id="challenges">Challenges</h3>
+<p>The key challenge of this project was to get everyone on to the same page. Each and every person in the organization must be fully committed to this idea for it to work regardless of whether its a in-house built software or software purchased elsewhere.</p>
+<p>Next, not everyone in the organization understands graph as quick as the technical people. From time to time, there will be a need to explain the findings of the charts from the dashboard.</p>
+<p>Lastly, everyone in the organization must understand the basic fundamentals of each department’s tasks so that things within the dashboard will be easier to understand.</p>
+</section>
+<section id="remarks" class="level3">
+<h3 class="anchored" data-anchor-id="remarks">Remarks</h3>
+<p>I couldn’t have done this with the support of my team member especially the front and back end. As a team, we delivered as promise with minor hiccups along the way. There is a lot more that goes into data preparation that helps this project to work that i will not be sharing openly. This system was not without its flaws, as any other softwares and methodology, however it did manage to save the company money from subscribing to ‘silo-platforms’</p>
+<p><br>
+Thank you for reading.</p>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">2023, Abdullah Zubair</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

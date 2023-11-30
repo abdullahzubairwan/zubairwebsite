@@ -1,0 +1,26 @@
+---
+title: "Others"
+---
+
+### Data Acquisition and Processing
+
+Throughout my career, I was tasked to find and get data whenever it is not available. This include browsing the whole wide web and also performing data scraping.
+
+For Webscraping, I used these packages in R:
+
+1.  `rvest` which was inspired by `beautiful soup`
+2.  `RSelenium` headless browser
+3.  `RCrawler` whenever necessary
+4.  `httr` which are useful tools for working with HTTP
+
+Through experience, I found that every single website is not similar to one another. Every task has it challenges hence to perform Webscraping requires understanding of how the page is structured, understanding the security levels and last but not least, respect towards the Web Host.
+
+Type of Data that I have previously did webscrape before:
+
+1.  Price of Goods in selected Supermarkets in Malaysia
+2.  GIS Data
+3.  Events
+4.  Health Data
+5.  Social Media through API
+
+Samples of Personal Web Scraping that I've done before is [located in this repository](https://github.com/abdullahzubairwan/web_scraping)

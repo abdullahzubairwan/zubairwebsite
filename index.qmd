@@ -1,0 +1,39 @@
+---
+title: "Abdullah Zubair"
+image: img/dp1.png
+about:
+  template: trestles
+  links:
+    - text: LinkedIn
+      icon: linkedin
+      url: "https://www.linkedin.com/in/abdullah-zubair-wan-mohd-hasni-534540167/"
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/zubairwh"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/abdullahzubairwan"
+    - text: Email
+      url: "mailto:abdullahzubair.wh@gmail.com"
+comments: false
+---
+
+## Bio
+
+I'm a Data Analyst based in Kuala Lumpur, Malaysia.
+
+Over the past years, I have a good track record of analyzing large and complex data sets and provide actionable insights towards both Government and Private entities.
+
+My passion is in data extraction, data cleaning, visualization, creating dashboards and basic GIS.
+
+This website is created for me to showcase bits and parts of my personal works and experience.
+
+You can contact me through email : abdullahzubair.wh\@gmail.com
+
+## Certificate
+
+📌 [Google Data Analytics (2023)](https://www.coursera.org/account/accomplishments/specialization/certificate/PDPGVZBZVMP4)
+
+📌 [Data Science: Foundations using R Specialization](https://www.coursera.org/account/accomplishments/specialization/certificate/MDCDSATPDEDG)
+
+📌[Agile Attlasian with JIRA](https://www.coursera.org/account/accomplishments/certificate/EXQPGW34S7C7)

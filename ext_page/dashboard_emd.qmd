@@ -1,0 +1,181 @@
+---
+title: "Employee Management Dashboard"
+description: "Creating a custom Management Dashboard from Open Source Tools"
+categories: 
+ - "Dashboard"
+ - "Open Source"
+image: "https://www.analyticsvidhya.com/wp-content/uploads/2016/10/shiny.png"
+---
+
+## Introduction to the Problem {#sec-dashboardemd}
+
+In a growing company, the management needs software to manage basic necessities of the company. This applies to nearly almost all departments so that things can run much smoother and faster whilst improving inter-communication between all personnel. However, in one of my previous company, the management wasn't satisfied with having to subscribe to a number of softwares that operates in its own. With most of the big companies have move towards digital transformation, my company wanted to be the first within our sub-companies to adopt this inevitable trend.
+
+With that, the idea of us creating our very own software from open source tools with addition of minor subscription from certain provider comes into life. I was tasked to lead this process and eventually deliver a fully automated system with minimal supervision required.
+
+### Tools Used
+
+After weeks of interviewing relevant stakeholders while researching the optimum tools, I concluded that we require the tools below to complete the task.
+
+1.  [JIRA](https://www.atlassian.com/) (Technical Related Data)
+2.  [R Shiny](https://www.rstudio.com/products/shiny/) (Front End)
+3.  [Formspree](https://formspree.io/) (Management Related Data) & Google Sheets API
+4.  Ubuntu (Back End)
+
+### How it worked
+
+Firstly, the `formspree` is just a form-submitting platform for employees to submit their regular claims, OT, leave and etc. Once we ditch the papers from HR side and moved towards digitalization, our web developers even included details of the remainder of their leaves, historical leaves and OT and others. This already eliminate one of the problem for HR having to manually check for each staff for every details of their matters. Of course, this information can only be accessed by both HR and each particular staff. The data will then be automatically submitted to `Google Sheets`.
+
+Next, the usage of `JIRA` is for the technical team and their respective team lead to submit their work entry. By right, this is mostly handled by the team leader to avoid creating too many side tasks for the technical team.
+
+From there, using extensions from `JIRA` and `Google Sheets API` , we extract the data into our local server via `cron-job` on certain times of the day. From there, we started building the Dashboard via `R Shiny` . We created multiple segmentations to feed relevant stakeholders respectively.
+
+Finally, our backend team deployed the dashboard through our servers so that it is secure and can't be accessed from people outside the organization.
+
+The dashboard was split into three section of functionalities.
+
+1.  Management
+
+-   For HR, Admin and Account to monitor leave, attendance, workload, and claims.
+
+-   For HR to assess key area of expertise to recruit (via tree map of recent tasks)
+
+-   For HR to compare employee current skills to suggest new courses for respective employees (via Radar Chart)
+
+2.  Team Leader/ Head of Department
+
+-   Work load
+
+-   Rough work interaction for team leads to manage their team in terms of teamwork etc. (via Sankey Diagram)
+
+-   Progress
+
+3.  Employee
+
+-   For employee to view concurrent tasks run by colleagues and historical task all in one page.
+
+-   To quickly find who is most involved in a certain project for reference.
+
+### Sample Visualization
+
+These visualizations are not the actual ones being done for my previous company.
+
+1.  Project Involvement
+
+For this purpose, I chose the heat map as its the use of suitable palette can quickly differentiate the value of 'involvement'. Brighter colors indicate higher level of involvement thus what is left is for relevant stakeholders to define the method of calculating 'involvement'
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+library(ggplot2)
+library(plotly)
+
+set.seed(16)
+x = c("Almond","Banana","Cruise","Diamond")
+x = rep(x,4)
+y = c("A","A","A","A",
+      "B","B","B","B",
+      "C","C","C","C",
+      "D","D","D","D")
+z = sample(0:5,16,replace = T)
+
+d1 = data.frame(staff = x,project = y,involvement = z) %>% mutate(involvement = ifelse(involvement == 0,NA_real_,involvement))
+
+d1_p = ggplot(d1,aes(x = project,y = staff, fill = involvement)) + geom_tile(color = 'black')+ theme_bw()+
+  scale_fill_viridis_c(na.value = "white")+
+  labs(x = "Project", y = "Staff")
+
+d1_p
+```
+
+2.  Recruitment Needs
+
+Given that we have collected enough sample data to understand the technical requirements needed in order to perform projects, we can just use simple statistic calculations to calculate the weight of each segment of work. The 'weight' meaning urgency to ensure current staff to expand their knowledge to relevant areas or to add more personnel in order to avoid bottlenecks. To perform this treemap, we organized the data in a 'network' format after a certain calculation towards the weights are produced.
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+fig <- plot_ly(
+  type="treemap",
+  labels=c("Recruitment", "Business Dev", "R Language", "Vis", "Statistics", "Front End", "Python", "AI", "Sales"),
+  parents=c("", "Recruitment", "Recruitment", "R Language", "R Language", "Recruitment", "Recruitment", "Python", "Recruitment"),
+  values = c(0, 8, 4, 3, 1, 6, 6, 5, 4),
+  textinfo="label+value+percent",
+  marker=list(line= list(width=0),colorscale='Reds'),
+  domain=list(column=1)
+)
+fig
+
+```
+
+Assuming the numbers are the so called 'weights', the colors indicate the urgency to have more resource in the specific area. What's great about using treemap is the color and size can be used to emphasize on the magnitude of the urgency. For example, the smaller box in 'R Language' which is 'Statistics' are needed but have the least urgency. There's a lot that can be played around here but what's important is that the formula for the weights must take into consideration all necessary factors.
+
+3.  Skill Set Coverage
+
+Human Resource needs to suggest yearly courses for staff to enroll. At times, the staff are not sure themselves on what to take, hence having this tool for HR is handy for them to do research and provide suitable suggestions towards the staffs. Assuming the diagram below are 2 people in the same department but having different roles. For career progression, HR might feel that Staff B can start to engage more on clients, hence they suggest courses related to the topic in hand.
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+fig <- plot_ly(
+    type = 'scatterpolar',
+    fill = 'toself'
+  ) 
+fig <- fig %>%
+  add_trace(
+    r = c(39, 28, 8, 7, 28, 39),
+    theta = c('Client Interface','Documentation','Visualization', 'AI', 'Research', 'Client Interface'),
+    name = 'Staff A'
+  ) 
+fig <- fig %>%
+  add_trace(
+    r = c(1.5, 10, 39, 31, 15, 1.5),
+    theta = c('Client Interface','Documentation','Visualization', 'AI', 'Research', 'Client Interface'),
+    name = 'Staff B'
+  ) 
+fig <- fig %>%
+  layout(
+    polar = list(
+      radialaxis = list(
+        visible = T,
+        range = c(0,50)
+      )
+    )
+  )
+
+fig
+```
+
+4.  Inter-communications
+
+The team leader and HR feels that each member of the team should cooperate and work together organically. Their aim is to avoid groupings and isolations. Hence, the data from relevant projects can help produce this 'Sankey' visualization.
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+fig <- plot_ly(
+  type = "sankey",
+  arrangement = "snap",
+  node = list(
+    label = c("Ali", "Bernard", "Callum", "Daphne", "Emanuelle", "Felipe"),
+    x = c(0.2, 0.1, 0.5, 0.7, 0.3, 0.5),
+    y = c(0.7, 0.5, 0.2, 0.4, 0.2, 0.3),
+    pad = 10), # 10 Pixel
+  link = list(
+    source = c(0, 0, 1, 2, 5, 4, 3, 5),
+    target = c(5, 3, 4, 3, 0, 2, 2, 3),
+    value = c(1, 2, 1, 1, 1, 1, 1, 2)))
+fig <- fig %>% layout(title = "Project Relationship in the year 2022")
+
+fig
+```
+
+As we can see from the chart, Bernard and Emanuelle is quite isolated from the rest of their department, while only Daphne seems to be at the central of things, having about not only many, but bigger number of collaboration between her team members as demonstrated by the thickness of the grey lines. Here, the team lead can revisit on the why and hows and plan ahead for the future.
+
+### Challenges
+
+The key challenge of this project was to get everyone on to the same page. Each and every person in the organization must be fully committed to this idea for it to work regardless of whether its a in-house built software or software purchased elsewhere.
+
+Next, not everyone in the organization understands graph as quick as the technical people. From time to time, there will be a need to explain the findings of the charts from the dashboard.
+
+Lastly, everyone in the organization must understand the basic fundamentals of each department's tasks so that things within the dashboard will be easier to understand.
+
+### Remarks
+
+I couldn't have done this with the support of my team member especially the front and back end. As a team, we delivered as promise with minor hiccups along the way. There is a lot more that goes into data preparation that helps this project to work that i will not be sharing openly. This system was not without its flaws, as any other softwares and methodology, however it did manage to save the company money from subscribing to 'silo-platforms'
+
+\
+Thank you for reading.

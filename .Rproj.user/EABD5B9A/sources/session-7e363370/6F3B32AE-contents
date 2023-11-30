@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Abdullah Zubair"
+  back-to-top-navigation: true
+  page-footer: "2023, Abdullah Zubair" 
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Vis"
+        file: vis.qmd
+      - text: "Dashboard"
+        file: dashboard.qmd
+      - text: "Others"
+        file: others.qmd
+      - text: "Posts"
+        file: posts.qmd
+    tools:
+      - icon: twitter
+        href: https://twitter.com/zubairwh
+      - icon: github
+        href: https://github.com/abdullahzubairwan
+
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+

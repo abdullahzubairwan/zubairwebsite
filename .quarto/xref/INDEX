@@ -1,0 +1,26 @@
+{
+  "index.qmd": {
+    "index.html": "c72d5ee3"
+  },
+  "about.qmd": {
+    "about.html": "5ddea0b0"
+  },
+  "others.qmd": {
+    "others.html": "f8b28c14"
+  },
+  "dashboard.qmd": {
+    "dashboard.html": "a226486e"
+  },
+  "vis.qmd": {
+    "vis.html": "1de6e261"
+  },
+  "posts.qmd": {
+    "posts.html": "8ebaa96b"
+  },
+  "ext_page/dashboard_emd.qmd": {
+    "dashboard_emd.html": "cd573243"
+  },
+  "ext_page/dashboard_template.qmd": {
+    "dashboard_template.html": "92e0f86e"
+  }
+}
