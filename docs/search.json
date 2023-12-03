@@ -25,7 +25,7 @@
     "href": "vis.html",
     "title": "Visualization",
     "section": "",
-    "text": "Post Election Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLocal-related Visualization\n\n\n\n\n\n\n\n\n\n\n\n\nPost State Election Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
+    "text": "Click to Enlarge\n\n\n\n\nGE15 - 1\n\n\n\n\n\nGE15 - 2\n\n\n\n\n\nGE15 - 3\n\n\n\n\n\nGE15 - 4\n\n\n\n\n\nMalaysia - 1\n\n\n\n\n\nMalaysia - 2\n\n\n\n\n\nPRN - 1\n\n\n\n\n\nPRN - 2\n\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "others.html",
@@ -39,7 +39,7 @@
     "href": "dashboard.html",
     "title": "Dashboard",
     "section": "",
-    "text": "Via Shiny (R Package)\n\nPersonal\nComing Soon.\n\n\nWork\nI have completed over 20+ Shiny Apps for clients in the past. Due to NDA, I will only share basic description of some of the dashboards.\n\nHealth Monitoring\nPolitical Campaign\nResource Management Proposal for a State Government\nGIS-Monitoring (Static)\n\nHowever, here are the ones I am allowed to share.\n\nEmployee Performance Index\n\nOne of my previous employers asked if I could make their Employee Assessment System to be more data driven to reduce amount of bias towards decisions. Hence after consulting relevant stakeholders, my colleague and I came up with a solution that leveraged on Attlasian's JIRA to produce suitable Data.\nRead More\n\n\n\nVia Markdown\n\nFPL Lite\n\nI created a simple monitoring dashboard for my Fantasy Football Mini League to keep track of my friends brilliance and misfortunes. Equipped with git-actions and git-pages, I automated the process of Data Collection and Deployment respectively once the game week concluded. This was built on RMarkdown to show that the simplest dashboard can be built within a few hours.\nhttps://abdullahzubairwan.github.io/fplite_dashboard/\n\n\n\n\n\n\n\n\n\n Back to top"
+    "text": "Via Shiny (R Package)\n\nPersonal\nComing Soon.\n\n\nWork\nI have completed over 20+ Shiny Apps for clients in the past. Due to NDA, I will only share basic description of some of the dashboards.\n\nHealth Monitoring\nPolitical Campaign\nResource Management Proposal for a State Government\nGIS-Monitoring (Static)\n\nHowever, here are the ones I am allowed to share as it was not client-related.\n\nEmployee Performance Index\n\nOne of my previous employers asked if I could make their Employee Assessment System to be more data driven to reduce amount of bias towards decisions. Hence after consulting relevant stakeholders, my colleague and I came up with a solution that leveraged on Attlasian's JIRA to produce suitable Data.\nRead More\n\n\n\nVia Markdown\n\nFPL Lite\n\nI created a simple monitoring dashboard for my Fantasy Football Mini League to keep track of my friends brilliance and misfortunes. Equipped with git-actions and git-pages, I automated the process of Data Collection and Deployment respectively once the game week concluded. This was built on RMarkdown to show that the simplest dashboard can be built within a few hours.\nhttps://abdullahzubairwan.github.io/fplite_dashboard/\n\n\n\n\n Back to top"
   },
   {
     "objectID": "ext_page/dashboard_emd.html",

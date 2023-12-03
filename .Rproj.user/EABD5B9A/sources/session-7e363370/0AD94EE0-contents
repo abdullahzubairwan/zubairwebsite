@@ -24,7 +24,7 @@ I have completed over 20+ Shiny Apps for clients in the past. Due to NDA, I will
 3.  Resource Management Proposal for a State Government
 4.  GIS-Monitoring (Static)
 
-However, here are the ones I am allowed to share.
+However, here are the ones I am allowed to share as it was not client-related.
 
 1.  Employee Performance Index
 
@@ -39,5 +39,3 @@ One of my previous employers asked if I could make their Employee Assessment Sys
 I created a simple monitoring dashboard for my Fantasy Football Mini League to keep track of my friends brilliance and misfortunes. Equipped with `git-actions` and `git-pages`, I automated the process of Data Collection and Deployment respectively once the game week concluded. This was built on `RMarkdown` to show that the simplest dashboard can be built within a few hours.
 
 <https://abdullahzubairwan.github.io/fplite_dashboard/>
-
-![](img/dashboard/2_dbd_fplite.JPG){width="665"}

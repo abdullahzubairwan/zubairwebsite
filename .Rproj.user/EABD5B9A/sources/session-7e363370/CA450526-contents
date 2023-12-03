@@ -1,0 +1,32 @@
+---
+title: "Visualization"
+filters:
+   - lightbox
+lightbox: 
+  match: auto
+  effect: fade
+  desc-position: right
+  loop: false
+---
+
+### Post Election Analysis
+
+![](img/vis/1.jpg)
+
+![](img/vis/2.jpg)
+
+![](img/vis/3.jpg)
+
+![](img/vis/4.jpg)
+
+### Local-related Visualization
+
+![](img/vis/5.jpg)
+
+![](img/vis/6.PNG)
+
+### Post State Election Analysis
+
+![](img/vis/7.jpg)
+
+![](img/vis/8.jpg)

@@ -1,14 +1,14 @@
 {
-    "id": "0AD94EE0",
-    "path": "C:/Users/Zubair/Desktop/SideProject/zubs_web/dashboard.qmd",
-    "project_path": "dashboard.qmd",
+    "id": "CA450526",
+    "path": null,
+    "project_path": null,
     "type": "quarto_markdown",
-    "hash": "1697105291",
+    "hash": "0",
     "contents": "",
-    "dirty": false,
-    "created": 1701291599866.0,
+    "dirty": true,
+    "created": 1701517375183.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 8,
     "properties": {
         "rmdVisualMode": "true",
         "rmdVisualWrapConfigured": "true",
@@ -17,16 +17,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "17,0",
+        "cursorPosition": "0,0",
         "scrollLine": "0",
-        "rmdVisualModeLocation": "526:358"
+        "rmdVisualModeLocation": "132:0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1701617136,
-    "encoding": "UTF-8",
+    "lastKnownWriteTime": 1701141566,
+    "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1701617136977,
+    "last_content_update": 1701517436177,
     "read_only": false,
     "read_only_alternatives": []
 }
